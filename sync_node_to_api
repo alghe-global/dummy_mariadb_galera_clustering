@@ -1,0 +1,1 @@
+* * * * * root API_HOST={{API_HOST_IP}} MARIADB_USERNAME={{DB_USERNAME}} MARIADB_PASSWORD={{DB_PASSWORD}} /usr/local/bin/sync_node_to_api.py
