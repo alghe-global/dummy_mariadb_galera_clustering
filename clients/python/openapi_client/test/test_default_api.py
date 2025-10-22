@@ -33,6 +33,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_deregister_cluster_node_cluster_node_ip_delete(self) -> None:
+        """Test case for deregister_cluster_node_cluster_node_ip_delete
+
+        Deregister Cluster Node
+        """
+        pass
+
     def test_health_check_health_check_customer_id_get(self) -> None:
         """Test case for health_check_health_check_customer_id_get
 
@@ -77,13 +84,6 @@ class TestDefaultApi(unittest.TestCase):
 
     def test_register_cluster_node_cluster_customer_id_put(self) -> None:
         """Test case for register_cluster_node_cluster_customer_id_put
-
-        Register Cluster Node
-        """
-        pass
-
-    def test_register_cluster_node_cluster_node_ip_delete(self) -> None:
-        """Test case for register_cluster_node_cluster_node_ip_delete
 
         Register Cluster Node
         """

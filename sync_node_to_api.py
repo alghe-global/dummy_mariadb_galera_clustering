@@ -118,16 +118,16 @@ async def synchronize_node_ip_to_api(ip, api_client, mysql_client):
                 logger.debug(f"Successfully registered node with cluster_state_uuid: {cluster_state_uuid} and ip: {ip}")
                 return True
             else:
-                api_client.register_cluster_node_cluster_node_ip_delete(ip)
+                api_client.deregister_cluster_node_cluster_node_ip_delete(ip)
                 logger.critical(f"Couldn't get cluster state UUID. Deregistered node (ip: {ip})")
                 return False
         else:
             logger.critical("Healthcheck failed... Deregistering node.")
-            api_client.register_cluster_node_cluster_node_ip_delete(ip)
+            api_client.deregister_cluster_node_cluster_node_ip_delete(ip)
             return False
     except Exception as e:
         logger.info(f"Unable to register node ip: {ip} to API ({e}). Deregistering node")
-        api_client.register_cluster_node_cluster_node_ip_delete(ip)
+        api_client.deregister_cluster_node_cluster_node_ip_delete(ip)
         return False
 
     return False
@@ -140,7 +140,7 @@ async def main(api_client):
         logger.debug("Instantiated MySQL client")
     else:
         logger.critical("Failed to instantiate MySQL client. Deregistering node.")
-        api_client.register_cluster_node_cluster_node_ip_delete(ip)
+        api_client.deregister_cluster_node_cluster_node_ip_delete(ip)
         sys.exit(1)
 
     result = await synchronize_node_ip_to_api(ip, api_service, mysql_client)

@@ -90,6 +90,7 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**delete_item_items_customer_id_delete**](docs/DefaultApi.md#delete_item_items_customer_id_delete) | **DELETE** /items/{customer_id} | Delete Item
+*DefaultApi* | [**deregister_cluster_node_cluster_node_ip_delete**](docs/DefaultApi.md#deregister_cluster_node_cluster_node_ip_delete) | **DELETE** /cluster/{node_ip} | Deregister Cluster Node
 *DefaultApi* | [**health_check_health_check_customer_id_get**](docs/DefaultApi.md#health_check_health_check_customer_id_get) | **GET** /health-check/{customer_id} | Health Check
 *DefaultApi* | [**put_item_items_customer_id_put**](docs/DefaultApi.md#put_item_items_customer_id_put) | **PUT** /items/{customer_id} | Put Item
 *DefaultApi* | [**read_cluster_status_cluster_get**](docs/DefaultApi.md#read_cluster_status_cluster_get) | **GET** /cluster | Read Cluster Status
@@ -97,7 +98,6 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**read_item_item_customer_id_id_get**](docs/DefaultApi.md#read_item_item_customer_id_id_get) | **GET** /item/{customer_id}/{id} | Read Item
 *DefaultApi* | [**read_items_items_customer_id_get**](docs/DefaultApi.md#read_items_items_customer_id_get) | **GET** /items/{customer_id} | Read Items
 *DefaultApi* | [**register_cluster_node_cluster_customer_id_put**](docs/DefaultApi.md#register_cluster_node_cluster_customer_id_put) | **PUT** /cluster/{customer_id} | Register Cluster Node
-*DefaultApi* | [**register_cluster_node_cluster_node_ip_delete**](docs/DefaultApi.md#register_cluster_node_cluster_node_ip_delete) | **DELETE** /cluster/{node_ip} | Register Cluster Node
 *DefaultApi* | [**root_get**](docs/DefaultApi.md#root_get) | **GET** / | Root
 
 

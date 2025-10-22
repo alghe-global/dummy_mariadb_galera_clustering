@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_item_items_customer_id_delete**](DefaultApi.md#delete_item_items_customer_id_delete) | **DELETE** /items/{customer_id} | Delete Item
+[**deregister_cluster_node_cluster_node_ip_delete**](DefaultApi.md#deregister_cluster_node_cluster_node_ip_delete) | **DELETE** /cluster/{node_ip} | Deregister Cluster Node
 [**health_check_health_check_customer_id_get**](DefaultApi.md#health_check_health_check_customer_id_get) | **GET** /health-check/{customer_id} | Health Check
 [**put_item_items_customer_id_put**](DefaultApi.md#put_item_items_customer_id_put) | **PUT** /items/{customer_id} | Put Item
 [**read_cluster_status_cluster_get**](DefaultApi.md#read_cluster_status_cluster_get) | **GET** /cluster | Read Cluster Status
@@ -12,7 +13,6 @@ Method | HTTP request | Description
 [**read_item_item_customer_id_id_get**](DefaultApi.md#read_item_item_customer_id_id_get) | **GET** /item/{customer_id}/{id} | Read Item
 [**read_items_items_customer_id_get**](DefaultApi.md#read_items_items_customer_id_get) | **GET** /items/{customer_id} | Read Items
 [**register_cluster_node_cluster_customer_id_put**](DefaultApi.md#register_cluster_node_cluster_customer_id_put) | **PUT** /cluster/{customer_id} | Register Cluster Node
-[**register_cluster_node_cluster_node_ip_delete**](DefaultApi.md#register_cluster_node_cluster_node_ip_delete) | **DELETE** /cluster/{node_ip} | Register Cluster Node
 [**root_get**](DefaultApi.md#root_get) | **GET** / | Root
 
 
@@ -71,6 +71,78 @@ Name | Type | Description  | Notes
  **table** | **str**|  | 
  **id_key** | **str**|  | 
  **id** | **int**|  | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deregister_cluster_node_cluster_node_ip_delete**
+> object deregister_cluster_node_cluster_node_ip_delete(node_ip)
+
+Deregister Cluster Node
+
+Normally, there'd be an intermediary keeping a mapping of customer_id to
+node_ip which would talk to this API acting as a sort of loadbalancer (healthcheck wise)
+
+In absence of such middleware, we simply assume IP is unique per customer_id (cluster).
+Thus, removing an IP would not remove any other node.
+
+### Example
+
+
+```python
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = openapi_client.DefaultApi(api_client)
+    node_ip = 'node_ip_example' # str | 
+
+    try:
+        # Deregister Cluster Node
+        api_response = api_instance.deregister_cluster_node_cluster_node_ip_delete(node_ip)
+        print("The response of DefaultApi->deregister_cluster_node_cluster_node_ip_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->deregister_cluster_node_cluster_node_ip_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **node_ip** | **str**|  | 
 
 ### Return type
 
@@ -555,78 +627,6 @@ with openapi_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **customer_id** | **str**|  | 
- **node_ip** | **str**|  | 
-
-### Return type
-
-**object**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **register_cluster_node_cluster_node_ip_delete**
-> object register_cluster_node_cluster_node_ip_delete(node_ip)
-
-Register Cluster Node
-
-Normally, there'd be an intermediary keeping a mapping of customer_id to
-node_ip which would talk to this API acting as a sort of loadbalancer (healthcheck wise)
-
-In absence of such middleware, we simply assume IP is unique per customer_id (cluster).
-Thus, removing an IP would not remove any other node.
-
-### Example
-
-
-```python
-import openapi_client
-from openapi_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "http://localhost"
-)
-
-
-# Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.DefaultApi(api_client)
-    node_ip = 'node_ip_example' # str | 
-
-    try:
-        # Register Cluster Node
-        api_response = api_instance.register_cluster_node_cluster_node_ip_delete(node_ip)
-        print("The response of DefaultApi->register_cluster_node_cluster_node_ip_delete:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling DefaultApi->register_cluster_node_cluster_node_ip_delete: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
  **node_ip** | **str**|  | 
 
 ### Return type
