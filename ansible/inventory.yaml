@@ -1,0 +1,10 @@
+---
+all:
+  children:
+    mariadb_nodes:
+      hosts:
+        # HOSTS GO HERE (one per line)
+      vars:
+        ansible_user: root
+        ansible_connection: ssh
+

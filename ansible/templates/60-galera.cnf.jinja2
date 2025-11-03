@@ -1,0 +1,33 @@
+#
+# * Galera-related settings
+#
+# See the examples of server wsrep.cnf files in /usr/share/mysql
+# and read more at https://mariadb.com/kb/en/galera-cluster/
+
+[mysqld]
+# Basic MariaDB settings
+binlog_format=ROW
+default_storage_engine=InnoDB
+innodb_autoinc_lock_mode=2
+bind-address=0.0.0.0 # Binds to all network interfaces. Adjust if you have a specific private IP for cluster traffic.
+
+# Galera Provider Configuration
+wsrep_on=ON
+wsrep_provider=/usr/lib/galera/libgalera_smm.so # Adjust path if different (e.g., /usr/lib64/galera-4/libgalera_smm.so)
+
+# Galera Cluster Configuration
+wsrep_cluster_name="my_galera_cluster" # A unique name for your cluster
+
+# IP addresses of ALL nodes in the cluster, comma-separated.
+# Use private IPs if available for cluster communication.
+wsrep_cluster_address="gcomm://{{ groups['mariadb_nodes'] | join(',') }}"
+
+{% set IP_ADDRESS = ansible_facts['default_ipv4']['address'] %}
+{% for item in groups["mariadb_nodes"] %}
+  {% if item == IP_ADDRESS %}
+# This node's specific configuration
+wsrep_node_name="mariadb_node{{ loop.index }}" # Must be unique for each node (e.g., node1, node2, node3)
+	{% endif %}
+{% endfor %}
+
+wsrep_node_address="{{ IP_ADDRESS }}" # This node's own IP address
