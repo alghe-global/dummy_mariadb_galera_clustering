@@ -1,0 +1,38 @@
+---
+- name: Install MariaDB packages
+  hosts: mariadb_nodes
+  vars:
+    os_family: Ubuntu
+  tasks:
+    # NOTE: python3-apt must be installed in the system
+    # NOTE: mysql user and group automatically created
+    #       after successful package installation
+    - name: Install mariadb-server package
+      ansible.builtin.apt:
+        name: mariadb-server
+        state: present
+        update_cache: yes
+      when: ansible_facts["distribution"] == os_family
+
+    - name: Install mariadb-client package
+      ansible.builtin.apt:
+        name: mariadb-client
+        state: present
+        update_cache: yes
+      when: ansible_facts["distribution"] == os_family
+
+- name: Write MariaDB configuration
+  hosts: mariadb_nodes
+  tasks:
+    - name: Write MariaDB configuration
+      ansible.builtin.template:
+        src: templates/60-galera.cnf.jinja2
+        dest: /etc/mysql/mariadb.conf.d/60-galera.cnf
+
+- name: Bootstrap MariaDB server
+  hosts: mariadb_nodes
+  tasks:
+    - name: Instructions
+      ansible.builtin.debug:
+        msg: "Cluster is ready to be bootstraped"
+
